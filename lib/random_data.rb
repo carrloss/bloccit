@@ -1,5 +1,9 @@
 module RandomData
 
+   def self.random_integer
+     rand(0..100)
+   end
+
    def self.random_paragraph
      sentences = []
      rand(4..6).times do
@@ -20,7 +24,7 @@ module RandomData
      sentence.capitalize << "."
    end
 
- 
+
    def self.random_word
      letters = ('a'..'z').to_a
      letters.shuffle!
