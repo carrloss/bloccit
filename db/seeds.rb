@@ -3,7 +3,7 @@ require 'random_data'
 
  50.times do
 
-   Post.create!(
+   Question.create!(
 
      title:  RandomData.random_sentence,
      body:   RandomData.random_paragraph
