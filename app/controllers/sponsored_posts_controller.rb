@@ -15,6 +15,7 @@ class SponsoredPostsController < ApplicationController
     @sponsoredpost.body = params[:sponsored_post][:body]
     @sponsoredpost.price = params[:sponsored_post][:price]
     @topic = Topic.find(params[:topic_id])
+
     @sponsoredpost.topic = @topic
 
     if @sponsoredpost.save

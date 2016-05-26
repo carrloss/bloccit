@@ -58,7 +58,7 @@ class PostsController < ApplicationController
       flash[:notice] = "\"#{@post.title}\" was deletedsuccesfully."
       redirect_to @post.topic
     else
-      flsh.now[:alert] = "There was an error deleting the post."
+      flash.now[:alert] = "There was an error deleting the post."
       render :show
     end
   end

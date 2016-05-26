@@ -7,7 +7,7 @@ RSpec.describe Topic, type: :model do
   let(:topic) { Topic.create!(name: name, description: description) }
 
   it { is_expected.to have_many(:posts) }
-  it { is_expected.to have_many(:sponsoredposts) }
+  it { is_expected.to have_many(:sponsored_posts) }#added underscore in this line as well
 
   describe "attributes" do
     it "has name, description, and public attributes" do
