@@ -25,7 +25,7 @@ RSpec.describe User, type: :model do
   describe "invalid user" do
     let(:user_with_invalid_name) { User.new(name: "", email: "user@bloccit.com") }
     let(:user_with_invalid_email) { User.new(name: "Bloccit User", email: "") }
-    let(:user_with_downcased_name) { User.new(name: "steve jobs", email: "user@bloccit.com")}
+    let(:user_with_downcased_name) { User.create(name: "steve jobs", email: "user@bloccit.com", password: '123123123')}
 
     it "should be an invalid user due to blank name" do
       expect(user_with_invalid_name).to_not be_valid
@@ -36,7 +36,12 @@ RSpec.describe User, type: :model do
     end
 
     it "should be an invalid user name due to downcased letters" do
-      expect(user_with_downcased_name).to_not be_valid
+      expect(user_with_downcased_name).to be_valid
+    end
+
+    it "capitalizes an invalid entry" do
+#      user_with_downcased_name.save
+      expect(user_with_downcased_name.name).to eq('Steve Jobs')
     end
   end
 end
