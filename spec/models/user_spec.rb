@@ -22,11 +22,65 @@ RSpec.describe User, type: :model do
   it { is_expected.to have_secure_password }
   it { is_expected.to validate_length_of(:password).is_at_least(6) }
 
+
+#attributes tests
   describe "attributes" do
+
     it "should have name and email attributes" do
       expect(user).to have_attributes(name: "Bloccit User", email: "user@bloccit.com")
     end
+#.role
+    it "responds to role" do
+       expect(user).to respond_to(:role)
+     end
+
+ #.admin?
+     it "responds to admin?" do
+       expect(user).to respond_to(:admin?)
+     end
+
+ #.member?
+     it "responds to member?" do
+       expect(user).to respond_to(:member?)
+     end
+
   end
+
+
+#roles specs
+  describe "roles" do
+
+     it "is member by default" do
+       expect(user.role).to eq("member")
+     end
+
+ #user
+     context "member user" do
+       it "returns true for #member?" do
+         expect(user.member?).to be_truthy
+       end
+
+       it "returns false for #admin?" do
+         expect(user.admin?).to be_falsey
+       end
+     end
+
+ #admin
+     context "admin user" do
+       before do
+         user.admin!
+       end
+
+       it "returns false for #member?" do
+         expect(user.member?).to be_falsey
+       end
+
+       it "returns true for #admin?" do
+         expect(user.admin?).to be_truthy
+       end
+     end
+   end
+
 
   describe "invalid user" do
     let(:user_with_invalid_name) { User.new(name: "", email: "user@bloccit.com") }
